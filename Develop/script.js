@@ -1,58 +1,83 @@
 
 // Assignment code here
-var capitalCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var specialChar = ['!', '@', '#', '$', '%', '^', '&', '*'];
-var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    //step 1 ask user to enter total length of password and convert to integer
 
-var capitalSelect = capitalCase[Math.floor(Math.random() * capitalCase.length)];
-var lowerSelect = lowerCase[Math.floor(Math.random() * lowerCase.length)];
-var specialSelect = specialChar[Math.floor(Math.random() * specialChar.length)];
-var numberSelect = numbers[Math.floor(Math.random() * numbers.length)];
 
-var promptLength = prompt("Please select password length. The length can be 8-128 characters.");
-promptLength = parseInt(promptLength);
-
-// Step 2 var prompt character options 
-var passwordCreation = function() {
-  var passwordInfoPrompt = prompt("Please select character type password. Choose 1 for upper case, 2 for lower case, 3 for special characters, or 4 for numbers");
-  if (passwordInfoPrompt === null || passwordInfoPrompt === "" || isNaN(passwordInfoPrompt)) {
-  window.alert("You need to provide a valid answer! Please try again.");
-  return passwordCreation();
+  var promptLength = prompt("Please select password length. The length can be 8-128 characters.");
+  if (promptLength < 8 || promptLength > 128) 
+    { window.alert ("Please select a proper password length. It must be 8-128 characters");
+  }
+    // Confirms use of special characters
+  if (promptLength >= 8 && promptLength <= 128) {
+    var upperCaseConfirm = confirm("Would you like to use uppercase letters?");
+    var lowerCaseConfirm = confirm("Would you like to use lowercase letters?");
+    var numbersConfirm = confirm("Would you like to use numbers?");
+    var specialCharConfirm = confirm("Would you like to like to use special characters?");
   }
 
-  passwordInfoPrompt = parseInt(passwordInfoPrompt);
-
-  switch (passwordInfoPrompt) {
-    case 1:
-      return capitalSelect;
-      break;
-    case 2:
-      return lowerSelect;
-      break;
-    case 3:
-      return specialSelect;
-      break;
-    case 4:
-      return numberSelect;
-      break;
-  }
-    // including password prompts into length
-  for (var i = 0; i < passwordInfoPrompt; i++);
-
-};
-
-  //step 1 ask user to enter total length of password and convert to integer
-
-  if (promptLength < 8 || promptLength > 128) {
-    alert ("Please select a proper password length.");
-  } 
-  // add password characters
-  else {
-    passwordCreation();
+  if (upperCaseConfirm != true && lowerCaseConfirm !=true && numbersConfirm !=true && specialCharConfirm !=true)
+  { window.alert ("You must select at least one character type!")
   }
 
-};
+  function writePassword() {
+
+  const generateBtn = document.querySelector('#generate');
+
+  document.querySelector('#generate').addEventListener("click", () => {
+    const includeUpper = upperCaseConfirm.true;
+    const includeLower = lowerCaseConfirm.true;
+    const includeNumber = numbersConfirm.true;
+    const includeSpecial = specialCharConfirm.true;
+    generateBtn.innerText = generatePassword(includeUpper, includeLower, includeNumber, includeSpecial, length);
+
+  });
+
+
+  document.getElementsById("#password").addEventListener
+  };
+
+  const randPassword = {
+    upper: randomUpper,
+    lower: randomLower,
+    number: randomNumber,
+    special: randomSpecial
+  }
+
+    //password generator
+  function generatePassword(upper, lower, number, special, length) {
+    let generatePassword = "";
+    const typeCount = upper + lower + number + special;
+      const typeArr = [{upper}, {lower}, {number}, {special}].filter(item => Object.values(item)[0]);
+
+    for(let i=0; i <= length-1; i++) {
+      typeArr.forEach(type => {
+        const funcName = Object.keys(type)[0];
+        generatePassword += randPassword[funcName]();
+      });
+    }
+    const finalPassword = generatePassword.slice(0,length);
+    return finalPassword;
+
+  }
+
+    //generator functions
+
+    function randomLower() {
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+    }
+
+    function randomUpper() {
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    }
+
+    function randomNumber() {
+      return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+    }
+
+    function randomSpecial() {
+      return String.fromCharCode(Math.floor(Math.random() * 47) + 32);
+    }
+  
 
 
 // Get references to the #generate element
@@ -60,7 +85,11 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var passUp = randomUpper();
+  var passLow = randomLower();
+  var passNum = randomNumber();
+  var passSym = randomSpecial();
+  var password = generatePassword(passUp, passLow, passNum, passSym, promptLength);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -71,14 +100,3 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-//var passwordInfo = {
-  //capitalCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  //lowerCaseletters = 'abcdefghijklmnopqrstuvwxyz';
-  //specialCharacters = '!@#$%^&';
-  //numbers = '0123456789';
-  //combinedChars = capitalCaseLetters + lowerCaseLetters + specialCharacters + numbers;
-//}
-
-  //var inRange = function(promptLength, min, max) {
-    //return ((promptLength-min)*(promptLength-max) <=0);
-  //}
