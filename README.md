@@ -22,4 +22,4 @@ Please use link for finished project. I will continue to add to this, as I get m
 
 ## Screenshot
 
-![screenshot](Develop/images/password-demo.PNG)
+![screenshot](Develop/images/password-demo.png)
