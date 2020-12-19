@@ -3,21 +3,7 @@
     //step 1 ask user to enter total length of password and convert to integer
 
 
-  var promptLength = prompt("Please select password length. The length can be 8-128 characters.");
-  if (promptLength < 8 || promptLength > 128) 
-    { window.alert ("Please select a proper password length. It must be 8-128 characters");
-  }
-    // Confirms use of special characters
-  if (promptLength >= 8 && promptLength <= 128) {
-    var upperCaseConfirm = confirm("Would you like to use uppercase letters?");
-    var lowerCaseConfirm = confirm("Would you like to use lowercase letters?");
-    var numbersConfirm = confirm("Would you like to use numbers?");
-    var specialCharConfirm = confirm("Would you like to like to use special characters?");
-  }
 
-  if (upperCaseConfirm != true && lowerCaseConfirm !=true && numbersConfirm !=true && specialCharConfirm !=true)
-  { window.alert ("You must select at least one character type!")
-  }
 
   function writePassword() {
 
@@ -85,6 +71,24 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  var promptLength = prompt("Please select password length. The length can be 8-128 characters.");
+  if (promptLength < 8 || promptLength > 128) 
+    { window.alert ("Please select a proper password length. It must be 8-128 characters");
+  }
+    // Confirms use of special characters
+  if (promptLength >= 8 && promptLength <= 128) {
+    var upperCaseConfirm = confirm("Would you like to use uppercase letters?");
+    var lowerCaseConfirm = confirm("Would you like to use lowercase letters?");
+    var numbersConfirm = confirm("Would you like to use numbers?");
+    var specialCharConfirm = confirm("Would you like to like to use special characters?");
+  }
+
+  if (upperCaseConfirm != true || lowerCaseConfirm !=true || numbersConfirm !=true || specialCharConfirm !=true)
+  { 
+    window.alert ("You must select at least one character type!");
+    writePassword ()
+  };
+
   var passUp = randomUpper();
   var passLow = randomLower();
   var passNum = randomNumber();
