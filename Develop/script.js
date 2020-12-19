@@ -74,6 +74,7 @@ function writePassword() {
   var promptLength = prompt("Please select password length. The length can be 8-128 characters.");
   if (promptLength < 8 || promptLength > 128) 
     { window.alert ("Please select a proper password length. It must be 8-128 characters");
+    writePassword ();
   }
     // Confirms use of special characters
   if (promptLength >= 8 && promptLength <= 128) {

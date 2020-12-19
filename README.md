@@ -16,7 +16,7 @@ Project created with:
 * Javascript
 
 ## Status
-Please use link for finished project. I will continue to add to this, as I get more confident in using Javascript. The screenshot shows the demo version of the password generator.
+Please use link for finished project. I will continue to add to this, as I get more confident in using Javascript. The screenshot shows the end result of the password generator.
 
 [Password Generator](https://achung92.github.io/password-generator/)
 
