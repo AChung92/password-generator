@@ -86,7 +86,7 @@ function writePassword() {
 
   if (upperCaseConfirm != true || lowerCaseConfirm !=true || numbersConfirm !=true || specialCharConfirm !=true)
   { 
-    window.alert ("You must select at least one character type!");
+    window.alert ("All character types must be included!");
     writePassword ()
   };
 
